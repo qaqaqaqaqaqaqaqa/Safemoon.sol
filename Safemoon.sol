@@ -12,7 +12,7 @@
    
    #LIQ+#RFI+#SHIB+#DOGE = #BEE
 
-   #SAFEMOON features:
+   #SAFEMARS features:
    3% fee auto add to the liquidity pool to locked forever when selling
    2% fee auto distribute to all holders
    I created a black hole so #Bee token will deflate itself in supply with every transaction
@@ -701,7 +701,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
 }
 
 
-contract SafeMoon is Context, IERC20, Ownable {
+contract SafeMars is Context, IERC20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
@@ -719,14 +719,14 @@ contract SafeMoon is Context, IERC20, Ownable {
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
-    string private _name = "SafeMoon";
-    string private _symbol = "SAFEMOON";
+    string private _name = "SafeMars";
+    string private _symbol = "SAFEMARS";
     uint8 private _decimals = 9;
     
-    uint256 public _taxFee = 5;
+    uint256 public _taxFee = 10;
     uint256 private _previousTaxFee = _taxFee;
     
-    uint256 public _liquidityFee = 5;
+    uint256 public _liquidityFee = 0;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
     IUniswapV2Router02 public immutable uniswapV2Router;
@@ -856,7 +856,7 @@ contract SafeMoon is Context, IERC20, Ownable {
     }
 
     function excludeFromReward(address account) public onlyOwner() {
-        // require(account != 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D, 'We can not exclude Uniswap router.');
+        // require(account != 0x2E45aA39bd49f0238534b352b32Bf3407ef33Be2, 'We can not exclude Uniswap router.');
         require(!_isExcluded[account], "Account is already excluded");
         if(_rOwned[account] > 0) {
             _tOwned[account] = tokenFromReflection(_rOwned[account]);
